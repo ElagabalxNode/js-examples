@@ -1,0 +1,26 @@
+{
+  "program": {
+    "candyMachine": "F6VVPfasfm38fDQiuau4iyyCgU2SkevhBJyvLipKyHue",
+    "candyGuard": "6VzqYqYBdcAwUn2HibkZaLwQ7RstycAZhTra1eTzd6eb",
+    "candyMachineCreator": "EhDVT1TjJB1jcPDYVbTuwHpo9bJY3ag3WUyVA2ASYJrd",
+    "collectionMint": "AELcjcmDNuDC8wfvwBZ2y2JYydu5yVZ8gQcrmxsbmtSM"
+  },
+  "items": {
+    "-1": {
+      "name": "Alternative Illusion Collection",
+      "image_hash": "d19c0a421f21a273b21f69d6313a85ae284170e2f5eb17e9c761992094498c72",
+      "image_link": "https://arweave.net/XEwsyR90IVnveWIC2ePI-NRWZYecDCWN-StReu-4F5A?ext=png",
+      "metadata_hash": "a0de149eb4de9ea4efea31d627f63af95868273f1480e6b1f641bec24e32c0e3",
+      "metadata_link": "https://arweave.net/3W-X6gSDP56WE7ON0UIlKqRBvJuv0Bku9vxY6dxiF0g",
+      "onChain": true
+    },
+    "0": {
+      "name": "InfernoInvoker #00320",
+      "image_hash": "45253cb39847297d5f54c6ea23c35ae2c64f917a0da907d26897d7a41f19b894",
+      "image_link": "https://arweave.net/hj3io25e01Q2Qe1o6lSwiszvWXoXFMIgf0kU3BjG1CU?ext=png",
+      "metadata_hash": "f4996d3fe152e1aa79c4e000bf3862d6341541da91e3f44f9b6c63cc528800ef",
+      "metadata_link": "https://arweave.net/aCIA5-94PnT6v7Io1KWrg2qtdUJniLqx-wX-NsTn64A",
+      "onChain": true
+    }
+  }
+}

@@ -3,11 +3,17 @@ import { useMetaplex } from "./useMetaplex";
 import { useState } from "react";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { PublicKey } from "@solana/web3.js";
+import React, { useEffect } from 'react';
+
+
 
 export const MintNFTs = ({ onClusterChange }) => {
+  
   const { metaplex } = useMetaplex();
   const wallet = useWallet();
 
+  const [candyMachineItem, setCandyMachineItem] = useState(null);
+  
   const [nft, setNft] = useState(null);
 
   const [disableMint, setDisableMint] = useState(true);
@@ -15,6 +21,7 @@ export const MintNFTs = ({ onClusterChange }) => {
   const candyMachineAddress = new PublicKey(
     process.env.NEXT_PUBLIC_CANDY_MACHINE_ID
   );
+
   let candyMachine;
   let walletBalance;
 
@@ -52,28 +59,50 @@ export const MintNFTs = ({ onClusterChange }) => {
     }
   };
 
+  useEffect(() => {
+    getCandyMachineState();
+  }, []);
+
+// candyMachine = undefined
   const checkEligibility = async () => {
     //wallet not connected?
     if (!wallet.connected) {
       setDisableMint(true);
       return;
     }
-
+    
     // read candy machine state from chain
-    candyMachine = await metaplex
-      .candyMachines()
-      .findByAddress({ address: candyMachineAddress });
+    candyMachine = await metaplex.candyMachines().findByAddress({ address: candyMachineAddress });
+    // candyMachine = isNotNull
+    console.log(candyMachine);
+
+    const getCandyMachineState = async () => {
+      candyMachine = await metaplex.candyMachines().findByAddress({ address: candyMachineAddress });
+      // Parse out all our metadata and log it out
+      const itemsAvailable = candyMachine.itemsAvailable.toString();
+      const itemsMinted = candyMachine.itemsMinted.toString();
+      const itemsRemaining = itemsAvailable - itemsMinted;
+      console.log(candyMachine);
+      
+      if (
+        candyMachine !== null
+      ) {
+      setCandyMachineItem({      
+        itemsAvailable,
+        itemsMinted,
+        itemsRemaining,
+      });
+      }
+};  
 
     // enough items available?
     if (
-      candyMachine.itemsMinted.toString(10) -
-      candyMachine.itemsAvailable.toString(10) >
-      0
+      candyMachine.itemsMinted.toString(10) - candyMachine.itemsAvailable.toString(10) > 0
     ) {
       console.error("not enough items available");
       setDisableMint(true);
       return;
-    }
+    }  
 
     // guard checks have to be done for the relevant guard group! Example is for the default groups defined in Part 1 of the CM guide
     const guard = candyMachine.candyGuard.guards;
@@ -237,8 +266,10 @@ export const MintNFTs = ({ onClusterChange }) => {
           return;
         }
       }
+
     }
 
+ 
     //good to go! Allow them to mint
     setDisableMint(false);
   };
@@ -270,6 +301,7 @@ export const MintNFTs = ({ onClusterChange }) => {
     setNft(nft);
   };
 
+
   return (
     <div>
       <select onChange={onClusterChange} className={styles.dropdown}>
@@ -280,6 +312,9 @@ export const MintNFTs = ({ onClusterChange }) => {
       <div>
         <div className={styles.container}>
           <h1 className={styles.title}>NFT Mint Address</h1>
+          <p>{`Items Avalible: ${candyMachineItem.itemsAvailable}`}</p>
+          <p>{`Items Minted: ${candyMachineItem.itemsMinted}`}</p>
+          <p>{`Items Remaining: ${candyMachineItem.itemsRemaining}`}</p>
           <div className={styles.nftForm}>
             <input
               type="text"
@@ -290,6 +325,7 @@ export const MintNFTs = ({ onClusterChange }) => {
               mint NFT
             </button>
           </div>
+
           {nft && (
             <div className={styles.nftPreview}>
               <h1>{nft.name}</h1>
@@ -304,3 +340,6 @@ export const MintNFTs = ({ onClusterChange }) => {
     </div>
   );
 };
+
+
+export default MintNFTs;

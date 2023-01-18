@@ -20,6 +20,7 @@ import { clusterApiUrl } from "@solana/web3.js";
 import { MetaplexProvider } from "./MetaplexProvider";
 import { MintNFTs } from "./MintNFTs";
 import "@solana/wallet-adapter-react-ui/styles.css";
+// import CountdownTimer from '../CountdownTimer';
 
 export default function Home() {
   const [network, setNetwork] = useState(WalletAdapterNetwork.Devnet);

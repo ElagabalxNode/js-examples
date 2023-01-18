@@ -1,0 +1,32 @@
+{
+  "number": 1,
+  "symbol": "AIN",
+  "sellerFeeBasisPoints": 500,
+  "isMutable": true,
+  "isSequential": false,
+  "creators": [
+    {
+      "address": "Gw8dVVQgKvENhd62JnqQwGmb5iJDkUn56SxTCUZU7VjA",
+      "share": 100
+    }
+  ],
+  "uploadMethod": "bundlr",
+  "awsConfig": null,
+  "nftStorageAuthToken": null,
+  "shdwStorageAccount": null,
+  "pinataConfig": null,
+  "hiddenSettings": null,
+  "guards": {
+    "default": {
+      "mintLimit": {
+        "id": 1,
+        "limit": 3
+      },
+      "solPayment": {
+        "value": 0.3,
+        "destination": "Gw8dVVQgKvENhd62JnqQwGmb5iJDkUn56SxTCUZU7VjA"
+      }
+
+    }
+  }
+}

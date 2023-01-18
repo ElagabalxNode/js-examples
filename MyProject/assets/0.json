@@ -1,0 +1,28 @@
+{
+    "name": "InfernoInvoker #00320",
+    "symbol": "AIN",
+    "description": "A elemental creature that can control and manipulate fire, creating massive infernos and summoning fire elementals.",
+    "image": "0.png",
+    "attributes": [
+      {
+        "trait_type": "creature_type",
+        "value": "Elemental"
+     },
+     {
+      "trait_type": "specialization",
+      "value": "Fire Elementa"
+     },
+     {
+      "trait_type": "gem",
+      "value": "Burning Gem"
+     }
+    ],
+    "properties": {
+      "files": [
+        {
+          "uri": "0.png",
+          "type": "image/png"
+        }
+      ]
+    }
+  }
